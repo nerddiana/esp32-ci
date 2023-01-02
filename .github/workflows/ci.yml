@@ -1,8 +1,15 @@
 name: "Espressif IoT Development Framework (ESP-IDF)"
+
 on: [push]
+
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - run: export IDF_TARGET=$(echo "esp32" | tr '[:upper:]' '[:lower:]' | tr -d '_-') 
-      - run: docker run -t -e IDF_TARGET="esp32" -v "/:/app/${{ github.repository }}" -w "/app/${{ github.repository }}/" espressif/idf:latest idf.py build
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Exports IDF_TARGET env variable
+        run: export IDF_TARGET=$(echo "esp32" | tr '[:upper:]' '[:lower:]' | tr -d '_-') 
+      - name: Run ESP_IDF docker image and build command
+        run: docker run -t -e IDF_TARGET="esp32" -v "/:/app/${{ github.repository }}" -w "/app/${{ github.repository }}/" espressif/idf:latest idf.py build
