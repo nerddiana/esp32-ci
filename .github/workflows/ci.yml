@@ -1,19 +1,15 @@
+name: "Espressif IoT Development Framework (ESP-IDF)"
+description: "This action builds your firmware for ESP32 directly in GitHub using Espressif ESP-IDF Docker image."
+
 on:
   push:
     branches:
       - dev
-      - main
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repo
-      uses: actions/checkout@v2
-      with:
-        submodules: 'recursive'
-    - name: esp-idf build
-      uses: espressif/esp-idf-ci-action@v1
-      with:
-        esp_idf_version: v4.4
-        target: esp32
-        path: '/'
+  using: "composite"
+  steps:
+    - run: |
+        export IDF_TARGET=$(echo "esp32" | tr '[:upper:]' '[:lower:]' | tr -d '_-') 
+        docker run -t -e IDF_TARGET="esp32" -v "/:/app/${{ github.repository }}" -w "/app/${{ github.repository }}/" espressif/idf:latest idf.py
+      shell: bash
