@@ -5,4 +5,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: export IDF_TARGET=$(echo "esp32" | tr '[:upper:]' '[:lower:]' | tr -d '_-') 
-      - run: docker run -t -e IDF_TARGET="esp32" -v "/:/app/${{ github.repository }}" -w "/app/${{ github.repository }}/" espressif/idf:latest idf.py
+      - run: docker run -t -e IDF_TARGET="esp32" -v "/:/app/${{ github.repository }}" -w "/app/${{ github.repository }}/" espressif/idf:latest idf.py build
