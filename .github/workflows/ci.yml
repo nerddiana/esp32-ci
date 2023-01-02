@@ -4,8 +4,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          export IDF_TARGET=$(echo "esp32" | tr '[:upper:]' '[:lower:]' | tr -d '_-') 
-          docker run -t -e IDF_TARGET="esp32" -v "/:/app/${{ github.repository }}" -w "/app/${{ github.repository }}/" espressif/idf:latest idf.py
-        shell: bash
+      - run: export IDF_TARGET=$(echo "esp32" | tr '[:upper:]' '[:lower:]' | tr -d '_-') 
+      - run: docker run -t -e IDF_TARGET="esp32" -v "/:/app/${{ github.repository }}" -w "/app/${{ github.repository }}/" espressif/idf:latest idf.py
