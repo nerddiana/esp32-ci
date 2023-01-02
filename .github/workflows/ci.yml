@@ -7,7 +7,7 @@ on:
       - dev
 
 jobs:
-  using: "composite"
+  runs-on: ubuntu-latest
   steps:
     - run: |
         export IDF_TARGET=$(echo "esp32" | tr '[:upper:]' '[:lower:]' | tr -d '_-') 
