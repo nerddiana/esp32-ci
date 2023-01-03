@@ -1,0 +1,9 @@
+[submodule "components/esp-usb-config"]
+	path = components/esp-usb-config
+	url = https://github.com/nerddiana/esp-usb-config.git
+[submodule "components/esp-wifi-connect"]
+	path = components/esp-wifi-connect
+	url = https://github.com/nerddiana/esp-wifi-connect.git
+[submodule "components/esp-ota-updates"]
+	path = components/esp-ota-updates
+	url = https://github.com/nerddiana/esp-ota-updates.git
