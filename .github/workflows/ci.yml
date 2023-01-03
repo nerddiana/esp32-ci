@@ -13,11 +13,8 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: espressif/idf:latest
-          options: -v ${{ github.workspace }}:/app/${{ github.repository }}/ -w /app/${{ github.repository }}/
-          shell: bash
+          options: -v ${{ github.workspace }}:/app/${{ github.repository }}/ -w /app/${{ github.repository }}/ idf.py build
           run: |
             pwd
             ls -ld $(find . -type f -not -path '*/\.git/*')
             cat ./main/*.c
-            idf.py
-            idf.py build
