@@ -16,13 +16,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Exports IDF_TARGET env variable
-        run: export IDF_TARGET=$(echo "esp32" | tr '[:upper:]' '[:lower:]' | tr -d '_-')
-      - name: Show docker pwd
-        run: pwd
       - name: Show files
         run: ls -ld $(find . -type f -not -path '*/\.git/*')
       - name: Cat source code
         run: cat ./main/*.c
       - name: Run ESP-IDF docker image and build command
-        run: docker run -t -e ${IDF_TARGET} idf.py build
+        run: idf.py build
