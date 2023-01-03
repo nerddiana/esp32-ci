@@ -3,17 +3,11 @@ name: "Espressif IoT Development Framework (ESP-IDF)"
 on: [push]
 
 jobs:
-  code-checkout:
-    name: Checkout repository code to runner
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
   build:
     name: Build
     runs-on: ubuntu-latest
     container:
-      image: espressif/idf:latest
+      image: espressif/esp32-ci-env
       env:
         IDF_TARGET: esp32
       volumes:
@@ -28,5 +22,7 @@ jobs:
         run: pwd
       - name: Show files
         run: ls -ld $(find . -type f -not -path '*/\.git/*')
+      - name: Cat source code
+        run: cat ./main/*.c
       - name: Run ESP-IDF docker image and build command
         run: docker run -t -e ${IDF_TARGET} idf.py build
