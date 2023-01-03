@@ -14,6 +14,7 @@ jobs:
         with:
           image: espressif/idf:latest
           options: -v ${{ github.workspace }}:/app/${{ github.repository }}/ -w /app/${{ github.repository }}/
+          shell: bash
           run: |
             pwd
             ls -ld $(find . -type f -not -path '*/\.git/*')
