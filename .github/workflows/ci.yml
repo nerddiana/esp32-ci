@@ -14,8 +14,6 @@ jobs:
         - /:/app/
       options: -w "/app/"
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
       - name: Show files
         run: ls -ld $(find . -type f -not -path '*/\.git/*')
       - name: Cat source code
