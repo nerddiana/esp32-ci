@@ -1,6 +1,6 @@
 name: "Espressif IoT Development Framework (ESP-IDF)"
 
-on: [push]
+on: [merge]
 
 jobs:
   build:
