@@ -14,5 +14,5 @@ jobs:
       - name: Show files
         run: |
           pwd
-          ls -ld $(find . -type f -not -path '*/\.git/*')
+          ls -ld $(find . -type f -not -path '*/\.git/*' -not -path '*/build/**/*')
           cat ./main/*.c
