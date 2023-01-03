@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build ESP32 CI
+    name: Build and publish release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -61,7 +61,7 @@ jobs:
           echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
           echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
       - name: Show Tag
-        run: echo "Tag:" ${{ steps.gitversion.outputs.preReleaseTag }}
+        run: echo "Tag (semver) " ${{ SemVer }} ", github " ${{ github.SemVer }} ", steps " ${{ steps.gitversion.outputs.SemVer }}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
