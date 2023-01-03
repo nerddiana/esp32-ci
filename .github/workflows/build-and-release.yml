@@ -62,7 +62,7 @@ jobs:
           echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
           echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
       - name: Show Tag
-        run: echo "Tag (semver) " ${{ $GITHUB_ENV.SemVer }}
+        run: echo "Tag (semver) " ${{ github.SemVer }}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
