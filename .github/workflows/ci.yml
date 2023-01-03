@@ -6,17 +6,15 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    container:
-      image: espressif/esp32-ci-env
-      env:
-        IDF_TARGET: esp32
-      volumes:
-        - /:/app/
-      options: -w "/app/"
     steps:
-      - name: Show files
-        run: ls -ld $(find . -type f -not -path '*/\.git/*')
-      - name: Cat source code
-        run: cat ./main/*.c
-      - name: Run ESP-IDF docker image and build command
-        run: idf.py build
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run the build process with Docker
+        uses: addnab/docker-run-action@v3
+        with:
+          image: espressif/esp32-ci-env
+          options: -v ${{ github.workspace }}/app -w /app/
+          run: |
+            ls -ld $(find . -type f -not -path '*/\.git/*')
+            cat ./main/*.c
+            idf.py build
