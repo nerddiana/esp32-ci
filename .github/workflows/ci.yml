@@ -12,8 +12,8 @@ jobs:
       - name: Run the build process with Docker
         uses: addnab/docker-run-action@v3
         with:
-          image: espressif/esp32-ci-env
-          options: -v ${{ github.workspace }}/app -w /app/
+          image: espressif/idf:latest
+          options: -v ${{ github.workspace }}/app/${{ github.repository }} -w /app/${{ github.repository }}
           run: |
             ls -ld $(find . -type f -not -path '*/\.git/*')
             cat ./main/*.c
