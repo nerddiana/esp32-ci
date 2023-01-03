@@ -25,6 +25,7 @@ jobs:
         with:
           versionSpec: '5.x'
       - name: Determine Version
+        id: gitversion
         uses: gittools/actions/gitversion/execute@v0.9.7
       - name: Display GitVersion outputs
         run: |
@@ -68,8 +69,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ $GITHUB_ENV.SemVer }}
-          release_name: Release ${{ $GITHUB_ENV.SemVer }}
+          tag_name: ${{ github.SemVer }}
+          release_name: Release ${{ github.SemVer }}
           draft: true
           prerelease: false
       - name: Upload Release Asset
