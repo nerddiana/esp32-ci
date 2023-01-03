@@ -61,15 +61,15 @@ jobs:
           echo "UncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}"
           echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
       - name: Show Tag
-        run: echo "Tag (semver) github " ${{ github.SemVer }} ", steps " ${{ steps.gitversion.outputs.SemVer }}
+        run: echo "Tag (semver) " ${{ $GITHUB_ENV.SemVer }}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.gitversion.outputs.preReleaseTag }}
-          release_name: Release ${{ steps.gitversion.outputs.preReleaseLabel }}
+          tag_name: ${{ $GITHUB_ENV.SemVer }}
+          release_name: Release ${{ $GITHUB_ENV.SemVer }}
           draft: true
           prerelease: false
       - name: Upload Release Asset
