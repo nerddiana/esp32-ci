@@ -26,5 +26,9 @@ jobs:
         run: export IDF_TARGET=$(echo "esp32" | tr '[:upper:]' '[:lower:]' | tr -d '_-')
       - name: Show files
         run: ls -a
+      - name: Show docker help
+        run: docker --help
+      - name: Run docker
+        run: docker run
       - name: Run ESP-IDF docker image and build command
         run: idf.py build
