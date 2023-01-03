@@ -18,8 +18,7 @@ jobs:
         IDF_TARGET: esp32
       volumes:
         - /:/app/
-      workdir:
-        - /app/
+      options: -w "/app/"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
